@@ -1,9 +1,12 @@
 package host.minestudio.craftlang.language.scanning
 
 enum class TokenType {
+    // Indentation
+    SPACE, TAB,
+
     // Single-character tokens.
-    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,
-    COMMA, DOT, MINUS, PLUS, SLASH, STAR,
+    LEFT_PAREN, RIGHT_PAREN, COMMA, DOT,
+    MINUS, PLUS, SLASH, STAR,
 
     // One or two character tokens.
     BANG,
