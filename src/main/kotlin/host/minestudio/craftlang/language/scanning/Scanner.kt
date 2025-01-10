@@ -13,7 +13,7 @@ class Scanner(private val source: String) {
         "else" to TokenType.ELSE,
         "false" to TokenType.FALSE,
         "for" to TokenType.FOR,
-        "fun" to TokenType.FUN,
+        "function" to TokenType.FUNCTION,
         "if" to TokenType.IF,
         "null" to TokenType.NULL,
         "or" to TokenType.OR,

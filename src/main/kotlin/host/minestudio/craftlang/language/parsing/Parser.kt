@@ -33,7 +33,7 @@ class Parser(private val tokens: List<Token>) {
     private fun declaration(): Statement {
         try {
             if (match(TokenType.CLASS)) return classDeclaration()
-            if (match(TokenType.FUN)) return function("function")
+            if (match(TokenType.FUNCTION)) return function("function")
             if (match(TokenType.SET)) return setter()
 
             return statement()
@@ -58,7 +58,7 @@ class Parser(private val tokens: List<Token>) {
         val methods = mutableListOf<Statement.FunctionStatement>()
         while (isIndentation()) {
             consumeIndentation()
-            consume(TokenType.FUN, "Expect method declaration.")
+            consume(TokenType.FUNCTION, "Expect method declaration.")
             methods.add(function("method"))
         }
 
@@ -486,7 +486,7 @@ class Parser(private val tokens: List<Token>) {
         while (!isAtEnd()) {
 
             when (peek().type) {
-                TokenType.CLASS, TokenType.FUN, TokenType.SET, TokenType.FOR, TokenType.IF, TokenType.WHILE, TokenType.PRINT, TokenType.RETURN -> return
+                TokenType.CLASS, TokenType.FUNCTION, TokenType.SET, TokenType.FOR, TokenType.IF, TokenType.WHILE, TokenType.PRINT, TokenType.RETURN -> return
                 else -> advance()
             }
         }

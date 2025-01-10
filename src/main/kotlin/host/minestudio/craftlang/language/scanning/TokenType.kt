@@ -19,7 +19,7 @@ enum class TokenType {
     IDENTIFIER, STRING, NUMBER,
 
     // Keywords.
-    AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NULL, OR,
+    AND, CLASS, ELSE, FALSE, FUNCTION, FOR, IF, NULL, OR,
     PRINT, RETURN, SUPER, THIS, TO, TRUE, SET, WHILE,
 
     EOF
