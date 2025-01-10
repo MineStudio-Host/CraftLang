@@ -13,7 +13,7 @@ class Scanner(private val source: String) {
         "else" to TokenType.ELSE,
         "false" to TokenType.FALSE,
         "for" to TokenType.FOR,
-        "fun" to TokenType.FUN,
+        "function" to TokenType.FUNCTION,
         "if" to TokenType.IF,
         "null" to TokenType.NULL,
         "or" to TokenType.OR,
@@ -45,8 +45,6 @@ class Scanner(private val source: String) {
         when (val c = advance()) {
             '(' -> addToken(TokenType.LEFT_PAREN)
             ')' -> addToken(TokenType.RIGHT_PAREN)
-            '{' -> addToken(TokenType.LEFT_BRACE)
-            '}' -> addToken(TokenType.RIGHT_BRACE)
             ',' -> addToken(TokenType.COMMA)
             '.' -> addToken(TokenType.DOT)
             '-' -> addToken(TokenType.MINUS)
@@ -70,8 +68,16 @@ class Scanner(private val source: String) {
                 }
             }
             ':' -> addToken(if (match(':')) TokenType.DOUBLE_COLON else TokenType.COLON)
-            ' ', '\r', '\t' -> {} // Ignore whitespace.
-            '\n' -> line++
+            ' ', '\t', '\r' -> {} // Ignore whitespace (besides indentation, handled in '\n')
+            '\n' -> {
+                line++
+
+                // At this point, we can't tell how many spaces are in each indentation tier,
+                // so we just parse as single spaces, and determine whether it's single, double, or quad in the parser
+                while (peek() == ' ' || peek() == '\t') {
+                    addToken(if (advance() == ' ') TokenType.SPACE else TokenType.TAB)
+                }
+            }
             '"' -> string()
             else -> {
                 if (isDigit(c)) {
