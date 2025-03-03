@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     compileOnly("net.minestom:minestom-snapshots:9803f2bfe3")    // Minestom
-    implementation("org.slf4j:slf4j-api:2.0.16")                    // SLF4J API (Logging)
+    implementation("org.slf4j:slf4j-api:2.0.17")                    // SLF4J API (Logging)
 }
 
 tasks.test {
